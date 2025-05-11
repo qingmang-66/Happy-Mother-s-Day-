@@ -1,0 +1,142 @@
+/* 基础样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Microsoft YaHei', sans-serif;
+    background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+}
+
+.title {
+    color: #ff0066;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.photo-frame {
+    width: 300px;
+    height: 300px;
+    margin: 0 auto 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.blessings {
+    background: rgba(255,255,255,0.9);
+    padding: 2rem;
+    border-radius: 15px;
+    margin: 2rem 0;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* 旋转爱心动画 */
+.heart-rotating {
+    position: relative;
+    width: 120px;
+    height: 120px;
+}
+
+.heart-rotating {
+    animation: rotateHeart 3s linear infinite;
+    transform-origin: center center;
+}
+
+.heart-rotating::before,
+.heart-rotating::after {
+    content: '';
+    position: absolute;
+    width: 72px;
+    height: 115px;
+    background: #ff0066;
+    border-radius: 80px 80px 0 0;
+}
+
+/* 修改后样式 */
+.heart-rotating::before {
+    left: 30px;
+    transform: rotate(45deg);
+}
+.heart-rotating::after {
+    right: 30px;
+    transform: rotate(-45deg);
+}
+
+/* 关键帧修改为钟摆效果 */
+@keyframes rotateHeart {
+    0% { transform: rotate(-20deg); }
+    50% { transform: rotate(20deg); }
+    100% { transform: rotate(-20deg); }
+}
+
+/* 调整伪元素定位 */
+.heart-rotating::before { left: 40px; }
+.heart-rotating::after { right: 40px; }
+
+/* 响应式适配 */
+@media (max-width: 768px) {
+    .heart-rotating::before,
+    .heart-rotating::after {
+        width: 48px;
+        height: 70px;
+        left: 18px;
+        right: 18px;
+    }
+}
+
+/* 爱心动画 */
+.hearts-container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+}
+
+.heart {
+    position: absolute;
+    color: #ff0066;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .photo-frame {
+        width: 200px;
+        height: 200px;
+    }
+    .heart-rotating::before,
+    .heart-rotating::after {
+        width: 30px;
+        height: 50px;
+        left: 25px;
+        right: 25px;
+    }
+    .title {
+        font-size: 2rem;
+    }
+}
